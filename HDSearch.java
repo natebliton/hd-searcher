@@ -4,42 +4,41 @@ import static java.lang.System.*;
 public class HDSearch {
     public static void main(String[] args) {      
 
-      File f = null;
-      String[] paths;
+        File f = null;
+        String[] paths;
             
-      try {    
-        
-        //String mainPath = "/Users/blitonn/Documents/GVSU/streams";
-        String mainPath = args[0];
+        try {    
+            //String mainPath = "/Users/blitonn/Documents/GVSU/streams";
+            String mainPath = args[0];
 
-        // create new file
-        f = new File(mainPath);
-                                 
-        // array of files and directories in root directory
-        paths = f.list();
-            
-        // for each name in the path array
-        for(String path:paths) {
-            
-            if (path.contains(".")) {
-               // System.out.println("File:\t" + mainPath + "/" + path);
-            } else if (isProjectFolder(path)) 
-            // look in project folder 
-            {
-                //System.out.println("Project Directory:\t" + mainPath + "/" + path);
-                String newPath = mainPath + "/" + path;
-                checkProjectFolder(newPath);
-            }
-            else 
-            // check folder in case there are project folders inside
-            {
-                //System.out.println("Directory:\t" + mainPath + "/" + path);
-                String newPath = mainPath + "/" + path;
-                boolean[] projectFilesPresent = {false, false, false, false, false};
-                checkFolder(newPath, projectFilesPresent);
-            }
+            // create new file
+            f = new File(mainPath);
 
-        }
+            // array of files and directories in root directory
+            paths = f.list();
+
+            // for each name in the path array
+            for(String path:paths) {
+            
+               if (path.contains(".")) {
+                  // System.out.println("File:\t" + mainPath + "/" + path);
+               } else if (isProjectFolder(path)) 
+                // look in project folder 
+                {
+                   //System.out.println("Project Directory:\t" + mainPath + "/" + path);
+                    String newPath = mainPath + "/" + path;
+                    checkProjectFolder(newPath);
+                }
+                else 
+                // check folder in case there are project folders inside
+                {
+                    //System.out.println("Directory:\t" + mainPath + "/" + path);
+                    String newPath = mainPath + "/" + path;
+                    boolean[] projectFilesPresent = {false, false, false, false, false};
+                    checkFolder(newPath, projectFilesPresent);
+                }
+
+            }
          
         } catch(Exception e) {
             // if any error occurs
@@ -107,7 +106,7 @@ public class HDSearch {
 
             // print report of project folder: directory name, mp3s, bounce folder, pdf, video, upload
             String reportString = projectName + "\t" + 
-            "Project Directory:\t" + projectFolderPath + "\t" + 
+            "Project Directory: " + projectFolderPath + "\t" + 
             "mp3: " + booleanToYesNo(projectFilesPresent[0]) + "\t" + 
             "bounce folder: " + booleanToYesNo(projectFilesPresent[1]) + "\t" + 
             "pdf: " + booleanToYesNo(projectFilesPresent[2]) + "\t" +
