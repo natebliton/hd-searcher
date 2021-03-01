@@ -59,45 +59,46 @@ public class HDSearch {
         try {    
       
             //
-             // create new file
-             f = new File(projectFolderPath);
+            // create new file
+            f = new File(projectFolderPath);
                                      
-             // array of files and directory
-             paths = f.list();
+            // array of files and directory
+            paths = f.list();
                 
-             // for each name in the path array
-             for(String path:paths) {
-                
-                if (path.contains(".")) {
+            if(paths != null) {
+                // for each name in the path array
+                for(String path:paths) {
+                    
+                    if (path.contains(".")) {
 
-                    // this is a file, so make file checks: mp3s, bounce folder, pdf, video, upload
-                    projectFilesPresent = checkFileType(path, projectFilesPresent);
-                    
-                } else if (isProjectFolder(path)) 
-                // look in project folder 
-                {
-                     //System.out.println("Project Directory:\t" + mainPath + "/" + path);
-                     String newPath = projectFolderPath + "/" + path;
-                     checkProjectFolder(newPath);
-                }
-                else 
-                // check folder in case there are project folders inside
-                {
-                    // this is a folder, so check folder checks: 0 mp3s, 1 bounce folder, 2 pdf, 3 video, 4 upload
-                    if (hasBounce(path)) {
-                        projectFilesPresent[1] = true; 
+                        // this is a file, so make file checks: mp3s, bounce folder, pdf, video, upload
+                        projectFilesPresent = checkFileType(path, projectFilesPresent);
+                        
+                    } else if (isProjectFolder(path)) 
+                    // look in project folder 
+                    {
+                        //System.out.println("Project Directory:\t" + mainPath + "/" + path);
+                        String newPath = projectFolderPath + "/" + path;
+                        checkProjectFolder(newPath);
                     }
-                    if (hasUpload(path)) {
-                        projectFilesPresent[4] = true; 
+                    else 
+                    // check folder in case there are project folders inside
+                    {
+                        // this is a folder, so check folder checks: 0 mp3s, 1 bounce folder, 2 pdf, 3 video, 4 upload
+                        if (hasBounce(path)) {
+                            projectFilesPresent[1] = true; 
+                        }
+                        if (hasUpload(path)) {
+                            projectFilesPresent[4] = true; 
+                        }
+                        
+                        //System.out.println("Directory:\t" + mainPath + "/" + path);
+                        String newPath = projectFolderPath + "/" + path;
+                        checkFolder(newPath, projectFilesPresent);
                     }
-                    
-                     //System.out.println("Directory:\t" + mainPath + "/" + path);
-                     String newPath = projectFolderPath + "/" + path;
-                     checkFolder(newPath, projectFilesPresent);
+        
                 }
-      
             }
-            
             // get string of just project name
             String projectName = "";
             if (projectFolderPath.lastIndexOf("/") > 1) {
@@ -197,39 +198,41 @@ public class HDSearch {
             // array of files and directory
             paths = f.list();
             
-            // for each name in the path array
-            for(String path:paths) {
-            
-                if (path.contains(".")) {
-                    // this is a file, so make file checks: mp3s, bounce folder, pdf, video, upload
-                    projectFilesPresent = checkFileType(path, projectFilesPresent);
-                    
-                    
-                } else if (isProjectFolder(path)) 
-                // look in project folder 
-                {
-                    //System.out.println("Project Directory:\t" + mainPath + "/" + path);
-                    String newPath = mainPath + "/" + path;
-                    checkProjectFolder(newPath);
-                }
-                else 
-                // check folder in case there are project folders inside
-                {
-                    // this is a folder, so check folder checks: 0 mp3s, 1 bounce folder, 2 pdf, 3 video, 4 upload
-                    if (hasBounce(path)) {
-                        projectFilesPresent[1] = true; 
+            if(paths != null){
+                            
+                // for each name in the path array
+                for(String path:paths) {
+                
+                    if (path.contains(".")) {
+                        // this is a file, so make file checks: mp3s, bounce folder, pdf, video, upload
+                        projectFilesPresent = checkFileType(path, projectFilesPresent);
+                        
+                        
+                    } else if (isProjectFolder(path)) 
+                    // look in project folder 
+                    {
+                        //System.out.println("Project Directory:\t" + mainPath + "/" + path);
+                        String newPath = mainPath + "/" + path;
+                        checkProjectFolder(newPath);
                     }
-                    if (hasUpload(path)) {
-                        projectFilesPresent[4] = true; 
+                    else 
+                    // check folder in case there are project folders inside
+                    {
+                        // this is a folder, so check folder checks: 0 mp3s, 1 bounce folder, 2 pdf, 3 video, 4 upload
+                        if (hasBounce(path)) {
+                            projectFilesPresent[1] = true; 
+                        }
+                        if (hasUpload(path)) {
+                            projectFilesPresent[4] = true; 
+                        }
+
+                        //System.out.println("Directory:\t" + mainPath + "/" + path);
+                        String newPath = mainPath + "/" + path;
+                        checkFolder(newPath, projectFilesPresent);
                     }
 
-                    //System.out.println("Directory:\t" + mainPath + "/" + path);
-                    String newPath = mainPath + "/" + path;
-                    checkFolder(newPath, projectFilesPresent);
                 }
-
             }
-        
         } catch(Exception e) {
             // if any error occurs
             e.printStackTrace();
