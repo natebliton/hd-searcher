@@ -107,12 +107,12 @@ public class HDSearch {
 
             // print report of project folder: directory name, mp3s, bounce folder, pdf, video, upload
             String reportString = projectName + "\t" + 
-            "Project Directory: " + projectFolderPath + "\t" + 
             "mp3: " + booleanToYesNo(projectFilesPresent[0]) + "\t" + 
             "bounce folder: " + booleanToYesNo(projectFilesPresent[1]) + "\t" + 
             "pdf: " + booleanToYesNo(projectFilesPresent[2]) + "\t" +
             "video file: " + booleanToYesNo(projectFilesPresent[3]) + "\t" + 
-            "upload folder: " + booleanToYesNo(projectFilesPresent[4]) + "\t";
+            "upload folder: " + booleanToYesNo(projectFilesPresent[4]) + "\t" +
+            "Project Directory: " + projectFolderPath + "\t";
 
             System.out.println(reportString);
 
