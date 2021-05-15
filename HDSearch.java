@@ -124,7 +124,7 @@ public class HDSearch {
 
     }
 
-    // checks to see if a string has the .mp3 extension
+    // checks if a string has the .mp3 extension
     private static boolean hasMp3(String str) {
        if (str.toLowerCase().contains(".mp3")) {
            return true;
@@ -133,7 +133,7 @@ public class HDSearch {
        }
     }
 
-    // checks to this might be a bounce folder
+    // checks if this might be a bounce folder
     private static boolean hasBounce(String str) {
         if (str.toLowerCase().contains("bounce")) {
             return true;
@@ -142,7 +142,7 @@ public class HDSearch {
         }
     }
 
-    // checks this might be an "upload" folder, likely containing tagged mp3s
+    // checks if this might be an "upload" folder, likely containing tagged mp3s
     private static boolean hasUpload(String str) {
         if (str.toLowerCase().contains("upload")) {
             return true;
@@ -151,7 +151,7 @@ public class HDSearch {
         }
     }
  
-    // checks to see if a string has the .pdf extension
+    // checks if a string has the .pdf extension
     private static boolean hasPdf(String str) {
         if (str.toLowerCase().contains(".pdf")) {
             return true;
@@ -160,7 +160,7 @@ public class HDSearch {
         }
     }
     
-    // checks to see if this might be a video file
+    // checks if this might be a video file
     private static boolean hasVideo(String str) {
         str = str.toLowerCase();
         if (str.contains(".mov") || str.contains(".mp4") || str.contains("avchd") || str.contains("mts")) {
@@ -204,21 +204,23 @@ public class HDSearch {
                 for(String path:paths) {
                 
                     if (path.contains(".")) {
-                        // this is a file, so make file checks: mp3s, bounce folder, pdf, video, upload
+                        // this is a file, so make file checks:
+                        // mp3s, bounce folder, pdf, video, upload
                         projectFilesPresent = checkFileType(path, projectFilesPresent);
                         
                         
                     } else if (isProjectFolder(path)) 
                     // look in project folder 
                     {
-                        //System.out.println("Project Directory:\t" + mainPath + "/" + path);
+                        // System.out.println("Project Directory:\t" + mainPath + "/" + path);
                         String newPath = mainPath + "/" + path;
                         checkProjectFolder(newPath);
                     }
                     else 
                     // check folder in case there are project folders inside
                     {
-                        // this is a folder, so check folder checks: 0 mp3s, 1 bounce folder, 2 pdf, 3 video, 4 upload
+                        // this is a folder, so check folder checks: 
+                        // 0 mp3s, 1 bounce folder, 2 pdf, 3 video, 4 upload
                         if (hasBounce(path)) {
                             projectFilesPresent[1] = true; 
                         }
@@ -226,7 +228,7 @@ public class HDSearch {
                             projectFilesPresent[4] = true; 
                         }
 
-                        //System.out.println("Directory:\t" + mainPath + "/" + path);
+                        // System.out.println("Directory:\t" + mainPath + "/" + path);
                         String newPath = mainPath + "/" + path;
                         checkFolder(newPath, projectFilesPresent);
                     }
@@ -242,6 +244,7 @@ public class HDSearch {
     }
 
     // returns true if folder has 2+ '-' characters
+    // as in my nameing scheme "2000-01-14-ThisProjectFolder"
     private static boolean isProjectFolder(String str) {
 
         if (countChar(str, '-') > 1) {
