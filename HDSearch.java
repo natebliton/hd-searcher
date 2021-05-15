@@ -1,5 +1,5 @@
 import java.io.File;
-import static java.lang.System.*;
+// import static java.lang.System.*;
 
 public class HDSearch {
     public static void main(String[] args) {      
