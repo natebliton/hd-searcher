@@ -1,6 +1,6 @@
 package unused;
 import java.io.File;
-import static java.lang.System.*;
+// import static java.lang.System.*;
 
 public class TestStrings {
 
