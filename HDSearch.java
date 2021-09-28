@@ -1,5 +1,4 @@
 import java.io.File;
-// import static java.lang.System.*;
 
 public class HDSearch {
     public static void main(String[] args) {      
@@ -106,15 +105,20 @@ public class HDSearch {
             }
 
             // print report of project folder: directory name, mp3s, bounce folder, pdf, video, upload
-            String reportString = projectName + "\t" + 
-            "mp3: " + booleanToYesNo(projectFilesPresent[0]) + "\t" + 
-            "bounce folder: " + booleanToYesNo(projectFilesPresent[1]) + "\t" + 
-            "pdf: " + booleanToYesNo(projectFilesPresent[2]) + "\t" +
-            "video file: " + booleanToYesNo(projectFilesPresent[3]) + "\t" + 
-            "upload folder: " + booleanToYesNo(projectFilesPresent[4]) + "\t" +
-            "Project Directory: " + projectFolderPath + "\t";
-
-            System.out.println(reportString);
+            System.out.print(projectName);
+            System.out.print('\t');
+            System.out.print("mp3: " + booleanToYesNo(projectFilesPresent[0]));
+            System.out.print('\t');
+            System.out.print("bounce folder: " + booleanToYesNo(projectFilesPresent[1]));
+            System.out.print('\t');
+            System.out.print("pdf: " + booleanToYesNo(projectFilesPresent[2]));
+            System.out.print('\t');
+            System.out.print("video file: " + booleanToYesNo(projectFilesPresent[3]));
+            System.out.print('\t');
+            System.out.print("upload folder: " + booleanToYesNo(projectFilesPresent[4]));
+            System.out.print('\t');
+            System.out.print("Project Directory: " + projectFolderPath);
+            System.out.print('\n');
 
         } catch(Exception e) {
             // if any error occurs
